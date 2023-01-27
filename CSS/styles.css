@@ -1,0 +1,72 @@
+*{
+    margin:0;
+    padding: 0;
+}
+
+.navBar{
+    display: flex;
+    flex-direction: row-reverse;
+    background-color: black;
+    padding: 50px;
+}
+a{
+    color: white;
+    text-decoration: none;
+    margin: 0 30px;
+}
+a:hover{
+    background-color: lightblue;
+}
+.searchPage{
+    background-color: lightblue;
+    height: 50vh;
+}
+.searchWork{
+    padding: 50px;
+    width: 100%;
+    background-color:lightgreen
+}
+.movieSearch{
+    height: 60px;
+    width: 45%;
+}
+.yearSearch{
+    height: 60px;
+    width: 20%;
+}
+.movieDisplay{
+    background-color: lightskyblue;
+    height: 200vh;
+}
+#movieSearching{
+    padding: 30px;
+    background-color: bisque;
+}
+#yearSearching{
+    padding: 30px;
+    background-color: bisque;
+}
+#movieDisp{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    padding: 30px;
+}
+.movieCard{
+    display: flex;
+    padding: 15px;
+    width: fit-content;
+    height: fit-content;
+    background-color: lightcoral;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+.imgWork{
+    align-self: center;
+    width: 50%;
+    height: 50%;
+}
+.MovTitle{
+    font-size: 12px;
+}
