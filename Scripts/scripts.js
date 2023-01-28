@@ -9,12 +9,33 @@ const yearBTN=document.getElementById("yearSearching");
 
 const getMovie = async(movieName) => {
     alert(movieName.value);
-    const resp = await fetch(`http://www.omdbapi.com/?s=${movieName.value}&apikey=5c67ab15`);
-    const data = await resp.json();
-    const movieArr=data.Search;
-    movieArr.map(addMovies);
-    console.log(movieArr);
-    console.log(data);
+
+    //works if user has only entered movie name
+    if(Year.value===""){
+        const resp = await fetch(`http://www.omdbapi.com/?s=${movieName.value}&apikey=5c67ab15`);
+        const data = await resp.json();
+        console.log(data);
+        const movieArr=data.Search;
+        movieArr.map(addMovies);
+    }
+    //works if user has entered year
+    else{
+        const resp = await fetch(`http://www.omdbapi.com/?s=${movieName.value}&y=${Year.value}&apikey=5c67ab15`);
+        const data = await resp.json();
+        console.log(data);
+        const movieArr=data.Search;
+        movieArr.map(addMovies);
+    }
+ 
+  
+    // const tarr=data.Search;
+    // const showYear = tarr.filter((data) => {
+    //     return data===Year.value;
+    // });
+ 
+
+
+   // console.log(movieArr);
    // const neighbor = data[0].borders[6];
    // const n_resp = await fetch(`https://restcountries.com/v2/alpha/${neighbor}`);
   //  const n_data = await n_resp.json();
@@ -23,18 +44,18 @@ const getMovie = async(movieName) => {
 
 
 
-const getbyYear = async(movieName,Year) => {
-    alert(movieName.value+Year.value);
-    const resp = await fetch(`http://www.omdbapi.com/?s=${movieName.value}&y=${Year.value}&apikey=5c67ab15`);
-    const data = await resp.json();
-    movieArr.map(addMovies);
-    console.log(movieArr);
-    console.log(data);
-   // const neighbor = data[0].borders[6];
-   // const n_resp = await fetch(`https://restcountries.com/v2/alpha/${neighbor}`);
-  //  const n_data = await n_resp.json();
-   // console.log(n_data);
-}
+// const getbyYear = async(movieName,Year) => {
+//     alert(movieName.value+Year.value);
+//     const resp = await fetch(`http://www.omdbapi.com/?s=${movieName.value}&y=${Year.value}&apikey=5c67ab15`);
+//     const data = await resp.json();
+//     movieArr.map(addMovies);
+//     console.log(movieArr);
+//     console.log(data);
+//    // const neighbor = data[0].borders[6];
+//    // const n_resp = await fetch(`https://restcountries.com/v2/alpha/${neighbor}`);
+//   //  const n_data = await n_resp.json();
+//    // console.log(n_data);
+// }
 
 movieBTN.addEventListener("click",()=>{
     if(movieName.value===""){
