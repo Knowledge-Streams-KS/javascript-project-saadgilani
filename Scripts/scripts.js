@@ -6,6 +6,9 @@ const Year=document.getElementById("yearSearch1");
 const movieBTN=document.getElementById("movieSearching");
 const yearBTN=document.getElementById("yearSearching");
 
+
+var movieArr;
+
 window.onload = function () {
     let localData = localStorage.getItem("localData");
     if (localData) {
@@ -19,6 +22,7 @@ window.onload = function () {
 window.onbeforeunload = function () {
     let movieDetail = document.getElementById("movieDisp").innerHTML;
     localStorage.setItem("localData", movieDetail);
+    localStorage.setItem("localMovies",movieArr);
   };
 
 
@@ -30,7 +34,7 @@ const getMovie = async(movieName) => {
         const resp = await fetch(`http://www.omdbapi.com/?s=${movieName.value}&apikey=5c67ab15`);
         const data = await resp.json();
         console.log(data);
-        const movieArr=data.Search;
+        movieArr=data.Search;
         document.getElementById("movieDisp").innerHTML="";
         movieArr.map(addMovies);
     }
@@ -39,7 +43,7 @@ const getMovie = async(movieName) => {
         const resp = await fetch(`http://www.omdbapi.com/?s=${movieName.value}&y=${Year.value}&apikey=5c67ab15`);
         const data = await resp.json();
         console.log(data);
-        const movieArr=data.Search;
+        movieArr=data.Search;
         document.getElementById("movieDisp").innerHTML="";
         movieArr.map(addMovies);
     }
