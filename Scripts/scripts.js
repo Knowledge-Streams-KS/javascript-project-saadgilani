@@ -6,9 +6,24 @@ const Year=document.getElementById("yearSearch1");
 const movieBTN=document.getElementById("movieSearching");
 const yearBTN=document.getElementById("yearSearching");
 
+window.onload = function () {
+    let localData = localStorage.getItem("localData");
+    if (localData) {
+      let movieDetail = document.getElementById("movieDisp");
+      movieDetail.innerHTML = localData;
+    }
+    sessionStorage.clear();
+};
+
+
+window.onbeforeunload = function () {
+    let movieDetail = document.getElementById("movieDisp").innerHTML;
+    localStorage.setItem("localData", movieDetail);
+  };
+
 
 const getMovie = async(movieName) => {
-    alert(movieName.value);
+    
 
     //works if user has only entered movie name
     if(Year.value===""){
@@ -16,6 +31,7 @@ const getMovie = async(movieName) => {
         const data = await resp.json();
         console.log(data);
         const movieArr=data.Search;
+        document.getElementById("movieDisp").innerHTML="";
         movieArr.map(addMovies);
     }
     //works if user has entered year
@@ -24,6 +40,7 @@ const getMovie = async(movieName) => {
         const data = await resp.json();
         console.log(data);
         const movieArr=data.Search;
+        document.getElementById("movieDisp").innerHTML="";
         movieArr.map(addMovies);
     }
  
@@ -65,7 +82,8 @@ movieBTN.addEventListener("click",()=>{
         getMovie(movieName);
     }
  });
-
+ const yearButton = document.getElementById("yearSearch1");
+ yearButton.addEventListener("keyup", getMovie);
 
 //  yearBTN.addEventListener("click", ()=>{
 //     if(Year.value==="" || movieName.value===""){
